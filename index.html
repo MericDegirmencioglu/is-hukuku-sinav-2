@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İş Hukuku — Fesih · Çalışma Düzeni · Sosyal Güvenlik (HBY230 4-9)</title>
+<style>
+  :root{
+    --bg:#0f1729; --panel:#16203a; --panel2:#1e2b4e;
+    --accent:#4f8cff; --accent2:#22d3ee; --good:#22c55e; --bad:#ef4444;
+    --text:#e8eef9; --muted:#9fb0cc; --line:#2a3a5e; --gold:#fbbf24;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:linear-gradient(160deg,#0b1222,#0f1729 40%,#111b34);color:var(--text);
+    line-height:1.65;min-height:100vh;-webkit-font-smoothing:antialiased}
+  header{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(13,20,38,.82);border-bottom:1px solid var(--line)}
+  .head-inner{max-width:1080px;margin:0 auto;padding:14px 20px}
+  h1.site{font-size:18px;font-weight:700;letter-spacing:.2px}
+  h1.site span{color:var(--accent2)}
+  .sub{color:var(--muted);font-size:12.5px;margin-top:2px}
+  nav{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .tab{cursor:pointer;border:1px solid var(--line);background:var(--panel);
+    padding:9px 16px;border-radius:10px;font-size:14px;font-weight:600;color:var(--muted);
+    transition:.15s;user-select:none}
+  .tab:hover{border-color:var(--accent);color:var(--text)}
+  .tab.active{background:linear-gradient(135deg,var(--accent),#3b6fd4);color:#fff;border-color:transparent;
+    box-shadow:0 4px 18px rgba(79,140,255,.35)}
+  main{max-width:1080px;margin:0 auto;padding:26px 20px 80px}
+  section{display:none;animation:fade .35s ease}
+  section.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .summary h2{font-size:22px;margin:34px 0 6px;color:#fff;display:flex;align-items:center;gap:10px}
+  .summary h2:first-child{margin-top:0}
+  .summary h2 .num{background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:#06101f;width:32px;height:30px;border-radius:8px;display:inline-grid;place-items:center;
+    font-size:14px;font-weight:800;flex:none}
+  .part{font-size:13px;font-weight:800;letter-spacing:1.5px;color:var(--accent2);text-transform:uppercase;
+    margin:40px 0 4px;padding-bottom:6px;border-bottom:2px solid var(--line)}
+  .summary h3{font-size:16.5px;margin:20px 0 6px;color:var(--accent2)}
+  .summary p{margin:8px 0;color:var(--text)}
+  .summary ul{margin:8px 0 8px 4px;padding-left:20px}
+  .summary li{margin:5px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px;margin:16px 0}
+  .madde{color:var(--gold);font-weight:700}
+  .key{background:rgba(251,191,36,.14);border-left:3px solid var(--gold);padding:10px 14px;
+    border-radius:0 8px 8px 0;margin:12px 0;font-size:14.5px}
+  .key b{color:var(--gold)}
+  .exam{background:rgba(239,68,68,.13);border:1px solid #b3372f;border-left:4px solid var(--bad);
+    padding:11px 15px 11px 14px;border-radius:0 10px 10px 0;margin:12px 0;font-size:14.5px;position:relative}
+  .exam::before{content:"⭐ SINAVDA ÇIKMASI MUHTEMEL";display:block;font-size:10.5px;font-weight:800;
+    letter-spacing:.8px;color:#ff8a80;margin-bottom:5px}
+  .exam b{color:#ffb4ad}
+  mark{background:rgba(239,68,68,.30);color:#fff;padding:0 4px;border-radius:4px;font-weight:600}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top}
+  th{background:#0c1830;color:var(--accent2)}
+  td b{color:var(--gold)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:12px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+  .intro-box{background:linear-gradient(135deg,#16294d,#152038);border:1px solid var(--accent);
+    border-radius:14px;padding:18px 22px;margin-bottom:10px}
+
+  .test-bar,.fc-bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:18px}
+  .test-bar{position:sticky;top:122px;z-index:30}
+  .score{font-size:15px;font-weight:700}
+  .score b{color:var(--accent2)}
+  .btn{cursor:pointer;border:none;border-radius:10px;padding:9px 16px;font-size:13.5px;font-weight:700;
+    color:#fff;background:linear-gradient(135deg,var(--accent),#3b6fd4);transition:.15s}
+  .btn:hover{filter:brightness(1.1)}
+  .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--muted)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--text)}
+  .filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+  .chip{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--muted);
+    padding:6px 12px;border-radius:999px;font-size:12.5px;font-weight:600;transition:.12s}
+  .chip:hover{border-color:var(--accent);color:var(--text)}
+  .chip.active{background:var(--accent2);color:#06101f;border-color:transparent}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0}
+  .q-no{color:var(--accent2);font-weight:800;font-size:13px;letter-spacing:.5px}
+  .q-cat{color:var(--muted);font-weight:600;font-size:11.5px;margin-left:8px;text-transform:uppercase;letter-spacing:.5px}
+  .q-text{font-weight:600;margin:6px 0 14px;font-size:15.5px}
+  .opt{display:block;border:1px solid var(--line);background:#0e1a30;border-radius:10px;
+    padding:11px 14px;margin:8px 0;cursor:pointer;transition:.12s;font-size:14.5px}
+  .opt:hover{border-color:var(--accent)}
+  .opt .lt{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:6px;
+    background:#1b2c4e;color:var(--accent2);font-weight:800;font-size:12px;margin-right:10px;vertical-align:middle}
+  .opt.correct{border-color:var(--good);background:rgba(34,197,94,.14)}
+  .opt.correct .lt{background:var(--good);color:#04210f}
+  .opt.wrong{border-color:var(--bad);background:rgba(239,68,68,.14)}
+  .opt.wrong .lt{background:var(--bad);color:#2a0606}
+  .opt.disabled{cursor:default;pointer-events:none;opacity:.92}
+  .exp{margin-top:10px;font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);
+    padding-top:10px;display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--gold)}
+
+  .fc-stage{display:grid;place-items:center;padding:10px 0}
+  .flash{width:100%;max-width:640px;height:340px;perspective:1600px;cursor:pointer}
+  .flash-inner{position:relative;width:100%;height:100%;transition:transform .55s;transform-style:preserve-3d}
+  .flash.flipped .flash-inner{transform:rotateY(180deg)}
+  .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:30px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid var(--line)}
+  .front{background:linear-gradient(150deg,#1a2b50,#16203a)}
+  .back{background:linear-gradient(150deg,#10322a,#123a30);transform:rotateY(180deg);border-color:#1f6b54}
+  .face .tag{position:absolute;top:16px;left:18px;font-size:11px;font-weight:800;letter-spacing:1px;color:var(--accent2);text-transform:uppercase}
+  .back .tag{color:#34d399}
+  .face .cnt{position:absolute;top:16px;right:18px;font-size:12px;color:var(--muted)}
+  .front .txt{font-size:19px;font-weight:700;line-height:1.5}
+  .back .txt{font-size:16px;line-height:1.6}
+  .hint{position:absolute;bottom:16px;font-size:11.5px;color:var(--muted)}
+  .fc-nav{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:18px}
+  .fc-progress{height:6px;background:#0e1a30;border-radius:6px;overflow:hidden;margin-top:14px;max-width:640px;width:100%;margin-inline:auto}
+  .fc-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:.3s}
+  .foot{color:var(--muted);font-size:12px;text-align:center;margin-top:40px}
+  @media(max-width:560px){.flash{height:400px}.test-bar{top:150px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="head-inner">
+    <h1 class="site">İş Hukuku <span>·</span> Fesih · Çalışma Düzeni · Sosyal Güvenlik</h1>
+    <div class="sub">Sınava Yönelik Detaylı Çalışma — Prof. Dr. Zeynep Şişli · HBY230 (4–9) · İzmir Ekonomi Üniversitesi</div>
+    <nav>
+      <div class="tab active" data-t="ozet">📘 Özet</div>
+      <div class="tab" data-t="test">📝 Test (150 Soru)</div>
+      <div class="tab" data-t="kartlar">🃏 Akıl Kartları (100)</div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ================= ÖZET ================= -->
+  <section id="ozet" class="summary active">
+    <div class="intro-box">
+      <b>Bu özet neyi kapsıyor?</b> HBY230 dersinin 4–9. slaytları (İş Sözleşmesinin Feshi, Çalışmanın Düzenlenmesi,
+      İş Sağlığı ve Güvenliği, Toplu İş Hukuku, Sosyal Sigortalar, İsteğe Bağlı Sigorta-GSS-İşsizlik) sayfa sayfa
+      analiz edilerek sınav odağıyla özetlendi. Altı ana bölüm hâlinde düzenlendi.
+      <div class="legend">
+        <span><i class="dot" style="background:#ef4444"></i> <b style="color:#ff8a80">Kırmızı kutu</b> = sınavda çıkması en muhtemel yer</span>
+        <span><i class="dot" style="background:#fbbf24"></i> <b style="color:var(--gold)">Sarı kutu</b> = ezberlenmesi gereken rakam/süre</span>
+        <span><mark>Vurgu</mark> = anahtar kavram</span>
+      </div>
+    </div>
+
+    <!-- ====== BÖLÜM A: FESİH ====== -->
+    <div class="part">A. İş Sözleşmesinin Feshi</div>
+
+    <h2><span class="num">1</span>Belirli Süreli İş Sözleşmesinin Feshi</h2>
+    <div class="card">
+      <ul>
+        <li><b>1) Haklı sebeple / derhal fesih</b> — İş Kanunu m.24 (işçi) ve m.25 (işveren).</li>
+        <li><b>2) Usulsüz fesih</b> — işverenin temerrüdü (TBK 408) ve işçinin usulsüz feshi (TBK 439).</li>
+      </ul>
+      <h3>İşverenin Temerrüdü — <span class="madde">TBK m.408</span></h3>
+      <p>İşveren, işgörme ediminin yerine getirilmesini kusuruyla engeller veya edimi kabulde temerrüde düşerse,
+      işçiye <b>ücretini ödemekle yükümlüdür</b>; işçiden bu edimi sonradan isteyemez. Ancak işçinin bu engelleme
+      sebebiyle <b>yapmaktan kurtulduğu giderler</b> ile başka iş yaparak <b>kazandığı veya kazanmaktan bilerek
+      kaçındığı yararlar</b> ücretinden indirilir.</p>
+      <h3>İşçinin Usulsüz Feshi — <span class="madde">TBK m.439</span></h3>
+      <p>İşçi haklı sebep olmaksızın işe başlamaz veya aniden işi bırakırsa, işveren <b>aylık ücretin dörtte birine</b>
+      eşit tazminat isteyebilir (+ ek zararlar). Bu hak, işi bırakmadan başlayarak <b>30 gün içinde</b> dava/takip ile
+      kullanılmazsa düşer.</p>
+      <h3>Yeni İşverenin Sorumluluğu — <span class="madde">İş K. m.23</span></h3>
+      <p>İşçi bildirim süresine uymadan işi bırakıp başka işverene girerse, yeni işveren şu hâllerde birlikte
+      sorumludur: (a) davranışa sebep olmuşsa, (b) bilerek işe almışsa, (c) öğrendikten sonra çalıştırmaya devam ederse.</p>
+      <div class="exam">Sık sorulan rakamlar: TBK 439 tazminatı = <b>aylık ücretin ¼'ü</b>, hak düşürücü süre =
+      <b>30 gün</b>. TBK 408 = işverenin temerrüdünde <b>ücret ödenir</b>, kazanılan/kaçınılan yararlar indirilir.</div>
+    </div>
+
+    <h2><span class="num">2</span>Süreli (Bildirimli) Fesih — <span class="madde">Madde 17</span></h2>
+    <div class="card">
+      <p><b>Süreli fesih hem işçi hem işveren tarafından kullanılabilir.</b> Belirsiz süreli sözleşmenin feshinden
+      önce durumun diğer tarafa bildirilmesi gerekir. Bildirim (önel) süreleri işçinin kıdemine göre:</p>
+      <table>
+        <tr><th>Kıdem</th><th>Bildirim süresi</th></tr>
+        <tr><td>6 aydan az</td><td><b>2 hafta</b></td></tr>
+        <tr><td>6 ay – 1,5 yıl</td><td><b>4 hafta</b></td></tr>
+        <tr><td>1,5 yıl – 3 yıl</td><td><b>6 hafta</b></td></tr>
+        <tr><td>3 yıldan fazla</td><td><b>8 hafta</b></td></tr>
+      </table>
+      <p>Bu süreler <b>asgari</b>dir, sözleşmeyle artırılabilir. Bildirim şartına uymayan taraf, süreye ilişkin
+      <b>ücret tutarında tazminat (ihbar tazminatı)</b> öder. İşveren bildirim süresine ait ücreti <b>peşin vererek</b>
+      derhal feshedebilir.</p>
+      <div class="exam">Ezber: <b>2-4-6-8 hafta</b>. Kötüniyet (fesih hakkının kötüye kullanımı) hâlinde işçiye
+      <b>bildirim süresinin 3 katı</b> tutarında tazminat ödenir (iş güvencesi kapsamı dışındaki işçilerde).</div>
+    </div>
+
+    <h2><span class="num">3</span>İş Güvencesi — Geçerli Sebep / İşe İade — <span class="madde">Madde 18-21</span></h2>
+    <div class="card">
+      <h3>Feshin Geçerli Sebebe Dayandırılması — <span class="madde">Madde 18</span></h3>
+      <p><b>30 veya daha fazla işçi</b> çalıştıran işyerinde <b>en az 6 aylık kıdemi</b> olan işçinin belirsiz süreli
+      sözleşmesini fesheden işveren; işçinin <b>yeterliliği / davranışı</b> ya da <b>işletmenin/işyerinin/işin
+      gerekleri</b>nden kaynaklanan geçerli sebebe dayanmak zorundadır. <mark>Yer altı işlerinde kıdem şartı aranmaz.</mark></p>
+      <p><b>Geçerli sebep oluşturmaz:</b> sendika üyeliği/sendikal faaliyet, işyeri sendika temsilciliği, idari/adli
+      başvuru, ırk-renk-cinsiyet-medeni hal-hamilelik-doğum-din-siyasi görüş, m.74 izinleri, hastalık/kaza nedeniyle
+      bekleme süresindeki devamsızlık.</p>
+      <h3>Fesihte Usul — <span class="madde">Madde 19</span></h3>
+      <p>İşveren fesih bildirimini <b>yazılı</b> yapmak ve sebebini <b>açık ve kesin</b> belirtmek zorundadır. İşçinin
+      davranışı/verimi ile ilgili fesihte önce <b>savunması alınmalıdır</b> (m.25/II hariç).</p>
+      <h3>İtiraz Usulü — <span class="madde">Madde 20</span></h3>
+      <p>İşçi, tebliğden itibaren <b>1 ay içinde arabulucuya</b> başvurmak zorundadır; anlaşma olmazsa son tutanaktan
+      itibaren <b>2 hafta içinde</b> iş mahkemesinde dava açılır. <b>İspat yükü işverene</b> aittir.</p>
+      <h3>Geçersiz Feshin Sonuçları — <span class="madde">Madde 21</span></h3>
+      <p>Fesih geçersizse işveren işçiyi <b>1 ay içinde işe başlatmak</b> zorundadır. Başlatmazsa <b>en az 4, en çok 8
+      aylık ücret</b> tutarında tazminat öder; ayrıca <b>en çok 4 aya kadar</b> boşta geçen süre ücreti ödenir. İşçi
+      kararın tebliğinden itibaren <b>10 işgünü içinde</b> başvurmalıdır.</p>
+      <div class="exam">İş güvencesi şartları: <b>30+ işçi · 6 ay kıdem · belirsiz süreli sözleşme · işveren vekili
+      olmamak</b>. Süreler: itiraz <b>1 ay (arabulucu)</b> → <b>2 hafta (dava)</b>; işe başlatma <b>1 ay</b>;
+      tazminat <b>4–8 ay</b>; boşta ücret <b>4 ay</b>; başvuru <b>10 işgünü</b>.</div>
+    </div>
+
+    <h2><span class="num">4</span>Çalışma Koşullarında Değişiklik — <span class="madde">Madde 22</span></h2>
+    <div class="card">
+      <p>İşveren çalışma koşullarında <b>esaslı değişikliği</b> ancak durumu işçiye <b>yazılı bildirerek</b> yapabilir.
+      İşçi <b>6 işgünü içinde yazılı kabul</b> etmezse değişiklik işçiyi bağlamaz. İşçi kabul etmezse işveren,
+      değişikliğin geçerli nedene dayandığını yazılı açıklayıp bildirim süresine uyarak feshedebilir.</p>
+      <div class="key">Esaslı değişikliği kabul süresi: <b>6 işgünü, yazılı</b>. Değişiklik geçmişe etkili yapılamaz.</div>
+    </div>
+
+    <h2><span class="num">5</span>İşçinin Haklı Nedenle Derhal Fesih Hakkı — <span class="madde">Madde 24</span></h2>
+    <div class="card">
+      <ul>
+        <li><b>I. Sağlık sebepleri</b> — işin işçinin sağlığı için tehlikeli olması; işverenin/başka işçinin bulaşıcı hastalığı.</li>
+        <li><b>II. Ahlak ve iyiniyet kurallarına uymayan haller</b> — işverenin yanıltması, şeref/namusa dokunma,
+        <b>cinsel taciz</b>, sataşma, <b>ücretin ödenmemesi/eksik ödenmesi</b>, çalışma şartlarının uygulanmaması.</li>
+        <li><b>III. Zorlayıcı sebepler</b> — işyerinde <b>bir haftadan fazla</b> işin durması.</li>
+      </ul>
+    </div>
+
+    <h2><span class="num">6</span>İşverenin Haklı Nedenle Derhal Fesih Hakkı — <span class="madde">Madde 25</span></h2>
+    <div class="card">
+      <ul>
+        <li><b>I. Sağlık sebepleri</b> — işçinin kendi kusurundan doğan hastalık nedeniyle ardı ardına <b>3 iş günü</b>
+        veya ayda <b>5 iş gününden</b> fazla devamsızlık; tedavi edilemez hastalık (Sağlık Kurulu). Diğer hastalık/kaza/
+        doğum hâllerinde bildirimsiz fesih, bildirim süresini <b>6 hafta aşınca</b> doğar.</li>
+        <li><b>II. Ahlak ve iyiniyet kurallarına uymayan haller</b> — yanıltma, şeref/namusa saldırı, cinsel taciz,
+        sataşma/sarhoşluk, hırsızlık/güveni kötüye kullanma, <b>7 günden fazla hapis</b> (ertelenmeyen), izinsiz ardı
+        ardına <b>2 işgünü</b> / ayda iki kez tatil sonrası / ayda <b>3 işgünü</b> devamsızlık, görevi yapmamada ısrar.</li>
+        <li><b>III. Zorlayıcı sebepler</b> — işçiyi işyerinde bir haftadan fazla çalışmaktan alıkoyan sebep.</li>
+        <li><b>IV. Gözaltı / tutukluluk</b> — devamsızlığın m.17 bildirim süresini aşması.</li>
+      </ul>
+      <div class="exam">Madde 25 devamsızlık rakamları en sevilen tuzaktır: <b>3/5 iş günü</b> (sağlık), izinsiz
+      <b>2 işgünü / ayda 3 işgünü</b> (ahlak), <b>7 günden fazla hapis</b>. <b>Gözaltı/tutukluluk yalnızca işverenin</b>
+      (m.25/IV) fesih sebebidir.</div>
+    </div>
+
+    <h2><span class="num">7</span>Derhal Fesih Hakkını Kullanma Süresi — <span class="madde">Madde 26</span></h2>
+    <div class="card">
+      <p>Ahlak ve iyiniyet kurallarına aykırılığa (m.24/II, m.25/II) dayanan fesih yetkisi, davranışın öğrenildiği
+      günden başlayarak <b>6 iş günü</b> geçtikten ve her hâlde fiilden itibaren <b>1 yıl</b> sonra kullanılamaz
+      (işçinin maddi çıkar sağlaması hâlinde 1 yıllık süre uygulanmaz).</p>
+      <div class="key">Hak düşürücü süre: <b>6 iş günü</b> (öğrenme) / <b>1 yıl</b> (fiil).</div>
+    </div>
+
+    <h2><span class="num">8</span>Feshe Bağlı Haklar ve Kıdem Tazminatı</h2>
+    <div class="card">
+      <p><b>Feshe bağlı haklar:</b> ihbar tazminatı, feshin geçersizliği/işe iade tazminatları, <b>kıdem tazminatı</b>,
+      yeni iş arama izni.</p>
+      <h3>Kıdem Tazminatı — <span class="madde">Mülga 1475 sayılı Kanun m.14</span> (yürürlükteki tek madde)</h3>
+      <p>Her <b>tam yıl</b> için <b>30 günlük ücret</b> tutarında kıdem tazminatı ödenir (1 yıldan artan süreler için
+      orantılı). Hesap <b>son ücret</b> üzerinden yapılır. En az <b>1 yıl</b> çalışma gerekir.</p>
+      <p><b>Kıdem tazminatına hak kazandıran başlıca hâller:</b> işverenin m.25/II dışında feshi, işçinin m.24'e göre
+      haklı feshi, muvazzaf askerlik, emeklilik/yaşlılık-malullük aylığı, <b>kadının evlendiği tarihten itibaren 1 yıl
+      içinde</b> kendi isteğiyle ayrılması, işçinin ölümü.</p>
+      <div class="key"><b>30 günlük ücret/yıl · son ücret · en az 1 yıl kıdem.</b> Aynı kıdem için iki kez ödenmez.</div>
+      <h3>Zamanaşımı — <span class="madde">4857 Ek Madde 3</span></h3>
+      <p>Kıdem tazminatı, ihbar (bildirim şartına uymama) tazminatı, kötüniyet tazminatı, eşit davranma tazminatı ve
+      yıllık izin ücretinde zamanaşımı <b>5 yıldır</b>.</p>
+    </div>
+
+    <h2><span class="num">9</span>Ücret, Yeni İş Arama İzni, Çalışma Belgesi, Toplu İşçi Çıkarma</h2>
+    <div class="card">
+      <h3>Ücret — <span class="madde">Madde 32, 34, 35</span></h3>
+      <p>Ücret en geç <b>ayda bir</b> ödenir (sözleşmeyle haftaya kadar indirilebilir), kural olarak <b>banka</b> hesabına.
+      Ücret alacaklarında zamanaşımı <b>5 yıl</b> (muacceliyetten itibaren). <b>Madde 34:</b> ücreti ödeme gününden
+      itibaren <b>20 gün içinde</b> ödenmeyen işçi iş görmekten kaçınabilir (grev sayılmaz). <b>Madde 35:</b> ücretin
+      <b>dörtte birinden fazlası haczedilemez</b>.</p>
+      <h3>Yeni İş Arama İzni — <span class="madde">Madde 27</span></h3>
+      <p>Bildirim süresi içinde işveren, işçiye <b>günde en az 2 saat</b> ücretli iş arama izni vermek zorundadır.
+      İzin verilmez/eksik kullandırılırsa ücreti ödenir; izinde çalıştırılırsa <b>%100 zamlı</b> ödenir.</p>
+      <h3>Çalışma Belgesi — <span class="madde">Madde 28</span></h3>
+      <p>İşten ayrılan işçiye işin çeşidini ve süresini gösteren belge verilir; her türlü resim ve harçtan muaftır.</p>
+      <h3>Toplu İşçi Çıkarma — <span class="madde">Madde 29</span></h3>
+      <p>İşveren toplu çıkarmayı en az <b>30 gün önce</b> sendika temsilcilerine, bölge müdürlüğüne ve İŞKUR'a yazıyla
+      bildirir. Toplu sayılma: <b>20-100 işçi → en az 10</b>; <b>101-300 → en az %10</b>; <b>301+ → en az 30</b> işçinin
+      bir ay içinde çıkarılması.</p>
+      <div class="exam">Toplu işçi çıkarma eşikleri ve <b>30 gün</b> önceden bildirim sık sorulur: 10 / %10 / 30.</div>
+    </div>
+
+    <!-- ====== BÖLÜM B: ÇALIŞMANIN DÜZENLENMESİ ====== -->
+    <div class="part">B. Çalışmanın Düzenlenmesi</div>
+
+    <h2><span class="num">10</span>Çalışma Süresi ve Denkleştirme — <span class="madde">Madde 63</span></h2>
+    <div class="card">
+      <p>Genel çalışma süresi haftada en çok <b>45 saat</b>; aksi kararlaştırılmamışsa çalışılan günlere eşit bölünür.
+      <b>Yer altı maden</b> işlerinde günde en çok <b>7,5</b>, haftada en çok <b>37,5 saat</b>.</p>
+      <p><b>Denkleştirme:</b> haftalık 45 saat, günde <b>11 saati</b> aşmamak üzere günlere farklı dağıtılabilir;
+      <b>2 aylık</b> dönemde haftalık ortalama 45 saati aşamaz. Toplu iş sözleşmesiyle <b>4 aya</b> kadar; <b>turizm</b>
+      sektöründe <b>4 ay</b>, TİS ile <b>6 aya</b> kadar.</p>
+      <div class="exam">Rakamlar: haftalık <b>45</b>, yer altı <b>37,5</b>, günlük max <b>11</b>; denkleştirme <b>2 ay</b>
+      (TİS 4), turizm <b>4 ay</b> (TİS 6). Denkleştirme için <b>yazılı anlaşma</b> şart.</div>
+    </div>
+
+    <h2><span class="num">11</span>Telafi Çalışması, Kısa Çalışma — <span class="madde">Madde 64</span></h2>
+    <div class="card">
+      <p><b>Telafi çalışması</b> (zorunlu nedenle durma, bayram/tatil çevresi, işçi talebiyle izin): çalışılmayan
+      süreler için işveren <b>2 ay</b> (kanun metninde 4 ay; ILO el kitabında 2 ay) içinde telafi yaptırabilir. Bu
+      çalışma <b>fazla çalışma sayılmaz</b>, günde en çok <b>3 saat</b>, <b>tatil günlerinde yaptırılamaz</b>.</p>
+      <p><b>Kısa çalışma:</b> genel/sektörel/bölgesel kriz veya zorlayıcı sebeple, <b>3 ayı geçmemek</b> üzere çalışma
+      süresinin en az <b>1/3 azaltılması</b> ya da en az <b>4 hafta</b> faaliyetin durdurulmasıdır.</p>
+      <div class="key">Telafi: <b>2 ay / günde 3 saat / tatilde yok / fazla çalışma değil</b>. Kısa çalışma:
+      <b>3 ay, 1/3 azaltma veya 4 hafta durma</b>.</div>
+    </div>
+
+    <h2><span class="num">12</span>Çalışma Süresinden Sayılan Haller & Ara Dinlenme — <span class="madde">Madde 66, 68</span></h2>
+    <div class="card">
+      <p><b>Çalışma süresinden sayılan (m.66):</b> yer/su altına iniş-çıkış süreleri, başka yere gönderilmede yolda
+      geçen süre, iş bekleyerek boş geçen süre, süt verme süreleri vb. (Sosyal yardım amaçlı servis süresi sayılmaz.)</p>
+      <p><b>Ara dinlenme (m.68):</b></p>
+      <table>
+        <tr><th>İşin süresi</th><th>Ara dinlenme</th></tr>
+        <tr><td>4 saat veya daha kısa</td><td><b>15 dakika</b></td></tr>
+        <tr><td>4 – 7,5 saat (7,5 dâhil)</td><td><b>yarım saat</b></td></tr>
+        <tr><td>7,5 saatten fazla</td><td><b>1 saat</b></td></tr>
+      </table>
+      <p><mark>Ara dinlenmeleri çalışma süresinden sayılmaz.</mark></p>
+      <div class="exam">Ara dinlenme: <b>15 dk / 30 dk / 1 saat</b> — ve bu süreler <b>çalışma süresinden sayılmaz</b>.</div>
+    </div>
+
+    <h2><span class="num">13</span>Gece Çalışması & Çalıştırma Yasakları — <span class="madde">Madde 69-73</span></h2>
+    <div class="card">
+      <p><b>Gece (m.69):</b> en geç <b>20.00</b>'de başlayıp en erken <b>06.00</b>'ya kadar geçen, en fazla <b>11 saat</b>
+      süren dönem. İşçilerin gece çalışması <b>7,5 saati geçemez</b> (turizm, özel güvenlik, sağlıkta yazılı onayla istisna).
+      Posta değişiminde en az <b>11 saat</b> dinlendirme.</p>
+      <p><b>Çocuk çalıştırma (m.71):</b> <b>15 yaşını</b> doldurmamış çocuk çalıştırılması yasaktır; 14 yaşını doldurmuş
+      ve ilköğretimi tamamlamış çocuk hafif işlerde çalışabilir.</p>
+      <p><b>Yer/su altı yasağı (m.72):</b> maden, kanalizasyon, tünel gibi işlerde <b>18 yaşını doldurmamış erkek ve her
+      yaştaki kadın</b> çalıştırılamaz. <b>Gece yasağı (m.73):</b> sanayide 18 yaşından küçük çocuk/genç gece çalıştırılamaz.</p>
+      <div class="exam">Gece <b>20.00–06.00</b>, gece çalışması max <b>7,5 saat</b>; çocuk çalıştırma yaşı <b>15</b>;
+      yer/su altında <b>18 yaş altı erkek + her yaş kadın</b> yasak.</div>
+    </div>
+
+    <h2><span class="num">14</span>Analık Hâli, Süt İzni — <span class="madde">Madde 74</span></h2>
+    <div class="card">
+      <p>Kadın işçi doğumdan önce <b>8</b> ve sonra <b>8</b> hafta = toplam <b>16 hafta</b> çalıştırılmaz (çoğul gebelikte
+      önceki süreye <b>+2 hafta</b>). Sağlık uygunsa doktor onayıyla doğuma <b>3 hafta</b> kalana dek çalışıp kalan süre
+      sonraya eklenebilir. İsteğe bağlı <b>6 aya kadar ücretsiz izin</b>. <b>Süt izni:</b> 1 yaşından küçük çocuk için
+      günde <b>1,5 saat</b> (çalışma süresinden sayılır).</p>
+      <p>Doğum sonrası yarım çalışma için ücretsiz izin: birinci doğumda <b>60</b>, ikincide <b>120</b>, sonrakilerde
+      <b>180</b> gün (engelli çocukta 360 gün).</p>
+      <div class="exam">Analık: <b>8+8=16 hafta</b>, çoğulda <b>+2</b>; süt izni <b>1,5 saat/gün</b>. Yarım çalışma izni
+      <b>60/120/180</b> gün.</div>
+    </div>
+
+    <h2><span class="num">15</span>Fazla Çalışma & Fazla Süreli Çalışma — <span class="madde">Madde 41</span></h2>
+    <div class="card">
+      <table>
+        <tr><th>Kavram</th><th>Tanım</th><th>Ücret</th></tr>
+        <tr><td><b>Fazla çalışma</b></td><td>Haftalık <b>45 saati aşan</b> çalışma</td><td><b>%50 zamlı</b></td></tr>
+        <tr><td><b>Fazla süreli çalışma</b></td><td>45 saatin altında belirlenmiş sürenin aşılıp 45'e kadar yapılması</td><td><b>%25 zamlı</b></td></tr>
+      </table>
+      <p>Zamlı ücret yerine işçi isterse <b>serbest zaman</b> kullanabilir: fazla çalışmada her saat için <b>1 saat 30 dk</b>,
+      fazla süreli çalışmada <b>1 saat 15 dk</b> (6 ay içinde). <b>İşçinin onayı</b> gerekir. Fazla çalışma yıllık
+      <b>270 saati</b> aşamaz.</p>
+      <p><b>Fazla çalışma yaptırılamayanlar (Yön. m.8):</b> 18 yaşından küçükler, sağlığı elvermeyenler (raporlu),
+      gebe/yeni doğum yapmış/emziren işçiler, <b>kısmi süreli</b> çalışanlar, yer altı maden işçileri.</p>
+      <div class="exam">Fazla çalışma <b>%50</b>, fazla süreli <b>%25</b>; serbest zaman <b>1,5 / 1,25 saat</b>; yıllık
+      <b>270 saat</b>; <b>işçi onayı</b> şart. Yer altı maden işçisine fazla çalışma yaptırılamaz.</div>
+    </div>
+
+    <h2><span class="num">16</span>Hafta Tatili, Mazeret İzni, Yıllık İzin — <span class="madde">Madde 46, Ek 2, 53</span></h2>
+    <div class="card">
+      <p><b>Hafta tatili (m.46):</b> 7 günlük dilimde kesintisiz en az <b>24 saat</b>; çalışılmasa da o günün ücreti
+      tam ödenir.</p>
+      <p><b>Mazeret izni (Ek m.2):</b> evlenme/evlat edinme veya ana-baba-eş-kardeş-çocuk ölümünde <b>3 gün</b>; eşin
+      doğumunda <b>5 gün</b>; %70+ engelli/süreğen hastalıklı çocuğun tedavisinde yılda <b>10 güne kadar</b> ücretli izin.</p>
+      <p><b>Yıllık ücretli izin (m.53):</b> en az <b>1 yıl</b> çalışmış işçiye verilir (deneme dâhil). Hizmet süresine göre:</p>
+      <table>
+        <tr><th>Hizmet süresi</th><th>Yıllık izin</th></tr>
+        <tr><td>1 – 5 yıl (5 dâhil)</td><td>en az <b>14 gün</b></td></tr>
+        <tr><td>5 – 15 yıl arası</td><td>en az <b>20 gün</b></td></tr>
+        <tr><td>15 yıl (dâhil) ve fazlası</td><td>en az <b>26 gün</b></td></tr>
+      </table>
+      <p>Yer altı işlerinde izinler <b>+4 gün</b>. <b>18 yaş altı ve 50+ yaş</b> işçilere en az <b>20 gün</b>. Yıllık izin
+      hakkından <b>vazgeçilemez</b>.</p>
+      <div class="exam">Yıllık izin <b>14 / 20 / 26 gün</b>; mazeret izni evlenme-ölüm <b>3 gün</b>, eş doğum <b>5 gün</b>;
+      hafta tatili <b>24 saat</b>. Yıllık izne hak için <b>en az 1 yıl</b> çalışma.</div>
+    </div>
+
+    <h2><span class="num">17</span>Kısmi Süreli Çalışma</h2>
+    <div class="card">
+      <p>Tam süreli emsal çalışmanın <b>üçte ikisine (2/3)</b> kadar yapılan çalışma kısmi sürelidir. Emsal işçi
+      haftada <b>45 saat</b> çalışıyorsa, <b>30 saat ve altı</b> kısmi sürelidir. Kısmi süreli işçilere <b>fazla
+      çalışma ve fazla süreli çalışma yaptırılamaz</b>.</p>
+      <div class="key">Kısmi süreli: emsalin <b>2/3'ü</b> → 45 saat için <b>30 saat ve altı</b>.</div>
+    </div>
+
+    <!-- ====== BÖLÜM C: İŞ SAĞLIĞI VE GÜVENLİĞİ ====== -->
+    <div class="part">C. İş Sağlığı ve Güvenliği</div>
+
+    <h2><span class="num">18</span>İSG — Amaç, Mevzuat ve Taraflar</h2>
+    <div class="card">
+      <p><b>İki ana eksen:</b> (1) <b>Koruma</b> = İş kazası ve meslek hastalıklarını önleme (İSG hukuku); (2)
+      <b>Telafi</b> = iş kazası/meslek hastalığı hâlinde asgari gelir güvencesi (sosyal sigorta).</p>
+      <p><b>Mevzuat:</b> Uluslararası sözleşmeler (ILO 155, 161, 187, 102, 121), Anayasa, <b>TBK m.417</b> (işverenin
+      İSG sağlama borcu), <b>4857</b>, <b>6331 sayılı İSG Kanunu</b>, <b>5510</b>.</p>
+      <p><b>Taraflar:</b> İşverenin <b>"işçiyi koruma/gözetme borcu"</b>; devletin sosyal devlet ilkesi temelinde
+      <b>kural koyma-organizasyon-denetim</b>; işçinin <b>"önlemlere uyma"</b> sorumluluğu.</p>
+      <p><b>Anayasal haklar:</b> Yaşam <b>2-5-17</b> · Sağlık <b>56</b> · Çalışma ve çalışanların korunması <b>49-50</b> ·
+      Sosyal güvenlik <b>60</b> · sınırlar <b>65</b>.</p>
+      <div class="exam"><b>TBK m.417</b>: işveren İSG için her türlü önlemi alır, işçi de önlemlere uyar. İSG'nin iki
+      yüzü: <b>Koruma (6331)</b> ve <b>Telafi (5510)</b>.</div>
+    </div>
+
+    <h2><span class="num">19</span>İş Kazası ve Meslek Hastalığı Tanımları — <span class="madde">6331 m.3 / 5510 m.13-14</span></h2>
+    <div class="card">
+      <p><b>İş kazası (6331 m.3/g):</b> işyerinde veya işin yürütümü nedeniyle meydana gelen, ölüme veya bedenen/ruhen
+      engelliliğe sebep olan olay. <b>5510 m.13</b> hâlleri: işyerinde bulunma, işveren işi nedeniyle, görevli olarak
+      başka yere gönderilme, emziren kadının süt verme zamanı, <b>işverence sağlanan taşıtla gidiş-gelişte</b>.</p>
+      <p><b>Meslek hastalığı (6331 m.3/l):</b> mesleki risklere maruziyet sonucu ortaya çıkan hastalık. <b>5510 m.14:</b>
+      işin niteliğinden tekrarlanan sebeple veya yürütüm şartları yüzünden uğranılan geçici/sürekli hastalık, bedensel/
+      ruhsal engellilik.</p>
+      <p><b>Bildirim:</b> iş kazası, kolluğa <b>derhal</b>, Kuruma <b>en geç 3 işgünü</b> içinde bildirilir. Süresinde
+      bildirilmezse geçici iş göremezlik ödeneği bildirim tarihine kadar işverenden tahsil edilir + idari para cezası.</p>
+      <div class="exam">İş kazası bildirimi: kolluğa <b>derhal</b>, SGK'ya <b>3 işgünü</b>. Servis kazası (işverence sağlanan
+      taşıt) <b>iş kazasıdır</b>. Meslek hastalığı = <b>mesleki risklere maruziyet</b> sonucu.</div>
+    </div>
+
+    <h2><span class="num">20</span>İş Kazası/Meslek Hastalığından Sağlanan Haklar & Sorumluluk</h2>
+    <div class="card">
+      <p>İş kazası sigortasından yararlanmak için <b>prim günü sınırı aranmaz</b>. Sağlanan haklar:</p>
+      <ul>
+        <li><b>Geçici iş göremezlik ödeneği</b> (sigortalılık süresi/prim/yaş koşulu aranmaksızın her gün için),</li>
+        <li><b>Sürekli iş göremezlik geliri</b> — meslekte kazanma gücü <b>en az %10</b> azalmışsa,</li>
+        <li><b>Ölüm geliri, evlenme ödeneği, cenaze ödeneği</b>.</li>
+      </ul>
+      <p><b>Sorumluluk ve rücu (5510 m.21):</b> İş kazası/meslek hastalığı işverenin <b>kastı</b> veya <b>İSG mevzuatına
+      aykırı hareketi</b> sonucu olmuşsa, Kurum yaptığı ödemeleri <b>işverene rücu</b> eder. <b>Kaçınılmazlık</b>
+      hâlinde sorumluluk aynı oranda sınırlanır. Üçüncü kişi kusuru varsa zararın <b>yarısı</b> rücu edilir.</p>
+      <div class="exam">İş kazasında <b>prim gün sınırı yok</b>; sürekli iş göremezlik geliri için kayıp <b>en az %10</b>.
+      Rücu: işverenin <b>kastı veya İSG mevzuatına aykırılığı</b>; <b>kaçınılmazlık</b> sorumluluğu sınırlar.</div>
+    </div>
+
+    <!-- ====== BÖLÜM D: TOPLU İŞ HUKUKU ====== -->
+    <div class="part">D. Toplu İş Hukuku</div>
+
+    <h2><span class="num">21</span>6356 Sayılı Kanun, Kavramlar ve Sendika Özgürlüğü</h2>
+    <div class="card">
+      <p><b>Kaynaklar:</b> Anayasa <b>m.51</b> (sendika kurma hakkı), ILO <b>87 ve 98</b> sayılı sözleşmeler,
+      <b>6356 sayılı Sendikalar ve Toplu İş Sözleşmesi Kanunu</b>, toplu iş sözleşmesi.</p>
+      <p><b>6356 m.1 amaç:</b> sendika/konfederasyonların kuruluş-işleyişi, <b>toplu iş sözleşmesi</b> yapılması,
+      uyuşmazlıkların <b>barışçı yollarla</b> çözümü, <b>grev ve lokavt</b>.</p>
+      <p><b>Kavramlar:</b> <b>Sendika = en az 7 işçi veya işveren</b>; <b>Konfederasyon = en az 5 ayrı işkolundan
+      sendika</b>. Tüzel kişilik, serbest kuruluş, bağımsızlık.</p>
+      <p><b>Sendika özgürlüğü:</b> Bireysel (olumlu/pozitif = kurma-üye olma; olumsuz/negatif = ayrılma-üye olmama) ve
+      kolektif. <b>Üyelik:</b> işkolunda fiilen çalışan işçi, <b>15 yaşını</b> doldurmuş olma.</p>
+      <div class="exam">Sayılar: <b>Sendika 7 kişi · Konfederasyon 5 işkolu sendika · üyelik 15 yaş</b>. Anayasa
+      <b>m.51</b>; ILO <b>87/98</b>.</div>
+    </div>
+
+    <h2><span class="num">22</span>Sendikal Güvenceler — <span class="madde">6356 m.23-25</span></h2>
+    <div class="card">
+      <ul>
+        <li><b>Yöneticilik güvencesi (m.23):</b> yönetici olan işçinin sözleşmesi <b>askıda</b> kalır; görevi sona erince
+        <b>1 ay içinde</b> işe başlatılmak için başvurabilir.</li>
+        <li><b>Temsilcilik güvencesi (m.24):</b> işyeri sendika temsilcisinin sözleşmesi <b>haklı neden olmadıkça</b>
+        feshedilemez; fesihte <b>1 ay içinde dava</b>; işe iadede <b>6 iş günü içinde</b> başvuru.</li>
+        <li><b>Sendika özgürlüğü güvencesi (m.25):</b> sendika üyeliği/faaliyeti nedeniyle ayrım yapılamaz; ihlalde işçiye
+        <b>en az 1 yıllık ücret</b> tutarında <b>sendikal tazminat</b>. Sendikal nedenle ispat yükü <b>işverene</b> aittir.</li>
+      </ul>
+      <div class="exam">Sendikal tazminat = <b>en az 1 yıllık ücret</b>. Temsilcilik: <b>1 ay dava / 6 iş günü</b> başvuru.</div>
+    </div>
+
+    <h2><span class="num">23</span>Toplu İş Sözleşmesi Yetkisi ve Uyuşmazlık Çözümü</h2>
+    <div class="card">
+      <p><b>Yetki barajları:</b> İşkolu barajı <b>%1</b>; işyeri toplu iş sözleşmesi için işçilerin <b>%50+1</b>'i;
+      işletme için <b>%40+1</b>'i sendika üyesi olmalı.</p>
+      <p><b>Uyuşmazlık çözüm yolları:</b> Barışçı — <b>arabulucu (zorunlu)</b>, hakem, <b>Yüksek Hakem Kurulu</b> (grev
+      yasakları ve kanunda sayılan hâllerde zorunlu); Mücadeleci — <b>grev ve lokavt</b>.</p>
+      <div class="exam">Yetki: işkolu <b>%1</b>, işyeri <b>%50+1</b>, işletme <b>%40+1</b>. Arabuluculuk <b>zorunlu</b>;
+      mücadele yolları <b>grev ve lokavt</b>.</div>
+    </div>
+
+    <!-- ====== BÖLÜM E: SOSYAL SİGORTALAR ====== -->
+    <div class="part">E. Sosyal Güvenlik ve Sosyal Sigortalar</div>
+
+    <h2><span class="num">24</span>Sosyal Güvenlik Sistemi ve 5510 Sayılı Kanun</h2>
+    <div class="card">
+      <p><b>Sosyal güvenlik = primli sistem (sosyal sigortalar) + primsiz sistem (sosyal yardım, hizmet, tazmin).</b>
+      <b>ILO 102</b> sayılı sözleşme <b>9 sosyal risk</b> sayar (iş kazası-meslek hastalığı, analık, hastalık-gelir
+      kaybı, hastalık-tedavi, yaşlılık, ölüm, engellilik-maluliyet, işsizlik, aile yardımları).</p>
+      <p><b>5510 sayılı Kanun</b> üç ana koldan oluşur:</p>
+      <ul>
+        <li><b>Kısa Vadeli Sigorta (KVS):</b> iş kazası ve meslek hastalığı, hastalık, analık.</li>
+        <li><b>Uzun Vadeli Sigorta (UVS):</b> malullük, yaşlılık, ölüm.</li>
+        <li><b>Genel Sağlık Sigortası (GSS):</b> sağlığın korunması, tedavi, rehabilitasyon.</li>
+      </ul>
+      <div class="exam"><b>KVS</b> = iş kazası/meslek hastalığı + hastalık + analık. <b>UVS</b> = malullük + yaşlılık +
+      ölüm. ILO 102 = <b>9 risk</b>. Anayasa sosyal güvenlik <b>m.60</b>.</div>
+    </div>
+
+    <h2><span class="num">25</span>Geçici ve Sürekli İş Göremezlik — <span class="madde">5510 m.18-19</span></h2>
+    <div class="card">
+      <p><b>Geçici iş göremezlik ödeneği (m.18):</b> istirahat raporu şartıyla; iş kazası/meslek hastalığında <b>her gün
+      için</b>; hastalıkta önceki bir yılda en az <b>90 gün</b> prim ve <b>3'üncü günden</b> itibaren. Ödenek miktarı:
+      <b>yatarak tedavide günlük kazancın yarısı (1/2)</b>, <b>ayakta tedavide üçte ikisi (2/3)</b>.</p>
+      <p><b>Sürekli iş göremezlik geliri (m.19):</b> meslekte kazanma gücü <b>en az %10</b> azalmışsa bağlanır.
+      Sürekli <b>tam</b> iş göremezlikte (kazanç × <b>%70</b>); sürekli <b>kısmi</b>'de bu gelirin iş göremezlik oranı
+      kadarı; <b>başka birinin bakımına muhtaç</b>sa <b>%100</b>.</p>
+      <p><b>Hak sahiplerine gelir (m.20):</b> ölen sigortalının hak sahiplerine kazancın <b>%70'i</b> gelir bağlanır;
+      evlenme ve cenaze ödeneği verilir.</p>
+      <div class="exam">Geçici iş göremezlik: <b>yatarak ½, ayakta ⅔</b>, hastalıkta <b>90 gün prim + 3. gün</b>. Sürekli
+      iş göremezlik: kayıp <b>≥%10</b>, tam <b>%70</b>. Hak sahibi geliri <b>%70</b>.</div>
+    </div>
+
+    <h2><span class="num">26</span>Uzun Vadeli Sigortalar: Malullük, Yaşlılık, Ölüm — <span class="madde">5510 m.25-32</span></h2>
+    <div class="card">
+      <p><b>Malullük (m.25-26):</b> çalışma gücünün veya meslekte kazanma gücünün <b>en az %60'ını</b> kaybeden sigortalı
+      malul sayılır. Malullük aylığı için: malul sayılma + en az <b>10 yıldan beri sigortalı</b> olup toplam <b>1800 gün</b>
+      prim (başkasının bakımına muhtaçsa süre aranmaz, 1800 gün yeterli).</p>
+      <p><b>Yaşlılık (m.28):</b> ilk defa bu Kanuna tabi olanlarda <b>kadın 58 / erkek 60</b> yaş + <b>9000 gün</b> prim
+      (4/a'lılarda prim gün şartı <b>7200 gün</b>). 1/1/2048'den itibaren yaş kadın-erkek <b>65</b>.</p>
+      <p><b>Ölüm (m.32):</b> ölüm aylığı için en az <b>1800 gün</b> prim veya (4/a'da) en az <b>5 yıl</b> sigortalılık +
+      <b>900 gün</b> prim. Sağlanan haklar: ölüm aylığı, ölüm toptan ödemesi, kız çocuklarına evlenme ödeneği, cenaze ödeneği.</p>
+      <div class="exam">Malullük: çalışma gücü kaybı <b>%60</b>, <b>10 yıl + 1800 gün</b>. Yaşlılık: <b>kadın 58/erkek 60</b>,
+      <b>9000 gün</b> (4/a → 7200). Ölüm: <b>1800 gün</b> veya <b>5 yıl + 900 gün</b>.</div>
+    </div>
+
+    <!-- ====== BÖLÜM F: İBS-GSS-İŞSİZLİK ====== -->
+    <div class="part">F. İsteğe Bağlı Sigorta · GSS · İşsizlik Sigortası</div>
+
+    <h2><span class="num">27</span>İsteğe Bağlı Sigorta (İBS) ve Genel Sağlık Sigortası (GSS)</h2>
+    <div class="card">
+      <p><b>İsteğe bağlı sigorta:</b> kapsamı <b>UVS + GSS</b> (KVS yoktur). Koşullar: Türkiye'de ikamet, <b>zorunlu
+      sigortalı olmamak</b> / asli sigortalı aylığı almamak, <b>18 yaşını</b> doldurmak, talepte bulunmak.</p>
+      <p><b>GSS (m.60):</b> ikametgâhı Türkiye'de olan herkesi kapsar (4/a-b-c'liler, İBS'liler, gelir testine tabi
+      düşük gelirliler, aylık alanlar vb.).</p>
+      <p><b>GSS'den yararlanma şartı (m.67):</b> başvurudan önceki son bir yılda toplam <b>30 gün</b> GSS primi; (b/g
+      bentlerinde ayrıca) <b>60 günden fazla</b> prim borcu bulunmaması. 4/a'lılar sigortalılık bitince <b>10 gün</b>;
+      son bir yılda 90 gün zorunlu sigortalılık varsa <b>90 gün</b> daha GSS'den yararlanır.</p>
+      <div class="exam">İBS = <b>UVS + GSS</b> (KVS yok), <b>18 yaş</b>, zorunlu sigortalı olmamak. GSS yararlanma:
+      son yılda <b>30 gün</b> prim + <b>60 günden fazla borç olmaması</b>.</div>
+    </div>
+
+    <h2><span class="num">28</span>İşsizlik Sigortası — <span class="madde">4447 sayılı Kanun</span></h2>
+    <div class="card">
+      <p><b>Prim (m.49):</b> <b>%1 sigortalı + %2 işveren + %1 Devlet</b>.</p>
+      <p><b>Hak kazanma koşulları (m.50-51):</b></p>
+      <ul>
+        <li>Son <b>3 yıl (36 ay)</b> içinde en az <b>600 gün</b> işsizlik sigortası primi,</li>
+        <li>Sözleşmenin sona ermesinden önceki son <b>120 gün</b> sürekli prim ödeyerek çalışma,</li>
+        <li>Sözleşmenin ödeneğe hak kazandıracak şekilde sona ermesi (işveren önelli fesih, sağlık/zorlayıcı haklı sebep,
+        ahlak-iyiniyet dışındaki işveren feshi vb.),</li>
+        <li>İşsiz ve çalışmaya hazır olmak; fesihten sonra <b>30 gün içinde</b> İŞKUR'a başvuru.</li>
+      </ul>
+      <p><b>Ödenek miktarı (m.50):</b> son <b>4 aylık</b> prime esas kazancın günlük ortalamasının <b>%40'ı</b>; aylık
+      asgari ücretin brüt tutarının <b>%80'ini geçemez</b>.</p>
+      <p><b>Ödenek süresi:</b> 600 gün → <b>180 gün</b>; 900 gün → <b>240 gün</b>; 1080 gün → <b>300 gün</b>.</p>
+      <div class="exam">İşsizlik primi <b>%1+%2+%1</b>; son 3 yılda <b>600 gün</b> + son <b>120 gün</b> sürekli; ödenek
+      <b>%40</b> (max asgari brüt <b>%80</b>); süreler <b>180/240/300 gün</b>; başvuru <b>30 gün</b>.</div>
+    </div>
+
+    <h2><span class="num">29</span>Fondan Diğer Edimler & İş Mahkemeleri</h2>
+    <div class="card">
+      <p><b>Ücret Garanti Fonu (Ek m.1):</b> işverenin ödeme aczine düşmesi (konkordato, iflas, aciz vesikası) hâlinde
+      işçinin son bir yıldaki <b>3 aylık ödenmeyen ücret</b> alacağı karşılanır.</p>
+      <p><b>Kısa Çalışma Ödeneği (Ek m.2):</b> kriz/zorlayıcı sebeple <b>3 ayı aşmayan</b> kısa çalışmada; günlük ödenek
+      son <b>12 aylık</b> ortalama brüt kazancın <b>%60'ı</b>, asgari ücretin brüt tutarının <b>%150'sini</b> geçemez.</p>
+      <p><b>Doğum/Evlat Edinme Sonrası Yarım Çalışma Ödeneği (Ek m.5):</b> m.74'teki yarım ücretsiz izin süresince;
+      hak için son üç yılda en az <b>600 gün</b> prim.</p>
+      <p><b>İş Mahkemeleri Kanunu (7036):</b> SGK ve sosyal güvenlik uyuşmazlıklarında <b>dava açmadan önce SGK'ya
+      başvuru zorunludur</b> (60 gün içinde cevap verilmezse talep reddedilmiş sayılır).</p>
+      <div class="exam">Ücret Garanti Fonu = <b>3 aylık ücret</b>. Kısa çalışma ödeneği = son 12 ay ortalamasının
+      <b>%60</b> (max asgari brüt %150). SGK uyuşmazlığında <b>önce SGK'ya başvuru zorunlu</b>.</div>
+    </div>
+
+    <p class="foot">Bu özet, HBY230 dersinin 4–9. sunum dosyalarından (1 PowerPoint + 5 PDF, ~190 sayfa) sayfa sayfa
+    çıkarılmıştır. Sınavda yürürlükteki resmî mevzuat metni esas alınmalıdır.</p>
+  </section>
+
+  <!-- ================= TEST ================= -->
+  <section id="test">
+    <div class="test-bar">
+      <div class="score">Puan: <b id="scoreNow">0</b> / <span id="scoreTot">0</span> &nbsp;·&nbsp; Çözülen: <span id="answered">0</span></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn ghost" id="shuffleBtn">🔀 Karıştır</button>
+        <button class="btn ghost" id="resetBtn">↺ Sıfırla</button>
+      </div>
+    </div>
+    <div class="filter" id="filter"></div>
+    <div id="quiz"></div>
+  </section>
+
+  <!-- ================= AKIL KARTLARI ================= -->
+  <section id="kartlar">
+    <div class="fc-bar">
+      <div class="score">Kart <b id="fcIndex">1</b> / <span id="fcTot">100</span> &nbsp;·&nbsp; Bilinen: <span id="fcKnown">0</span></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn ghost" id="fcShuffle">🔀 Karıştır</button>
+        <button class="btn ghost" id="fcReset">↺ Sıfırla</button>
+      </div>
+    </div>
+    <div class="fc-stage">
+      <div class="flash" id="flash">
+        <div class="flash-inner">
+          <div class="face front">
+            <span class="tag">Soru</span><span class="cnt" id="fcCnt">1/100</span>
+            <div class="txt" id="fcFront">—</div>
+            <div class="hint">Çevirmek için karta tıkla</div>
+          </div>
+          <div class="face back">
+            <span class="tag">Cevap</span><span class="cnt" id="fcCnt2">1/100</span>
+            <div class="txt" id="fcBack">—</div>
+            <div class="hint">Geri çevirmek için tıkla</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-progress"><i id="fcBar" style="width:1%"></i></div>
+    <div class="fc-nav">
+      <button class="btn ghost" id="fcPrev">← Önceki</button>
+      <button class="btn" id="fcKnow" style="background:linear-gradient(135deg,#22c55e,#16a34a)">✓ Biliyorum</button>
+      <button class="btn ghost" id="fcNext">Sonraki →</button>
+    </div>
+  </section>
+</main>
+
+<script src="data.js"></script>
+<script>
+const tabs=document.querySelectorAll('.tab'),secs=document.querySelectorAll('section');
+tabs.forEach(t=>t.onclick=()=>{
+  tabs.forEach(x=>x.classList.remove('active'));t.classList.add('active');
+  secs.forEach(s=>s.classList.remove('active'));
+  document.getElementById(t.dataset.t).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+const L=['A','B','C','D','E'];
+let qData=[...QUESTIONS], answered=0, score=0, activeCat='Tümü';
+const quiz=document.getElementById('quiz');
+const cats=['Tümü',...Array.from(new Set(QUESTIONS.map(q=>q.c)))];
+const filterEl=document.getElementById('filter');
+filterEl.innerHTML=cats.map(c=>`<div class="chip${c==='Tümü'?' active':''}" data-c="${c}">${c}</div>`).join('');
+filterEl.querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{
+  filterEl.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));
+  ch.classList.add('active');activeCat=ch.dataset.c;
+  qData=activeCat==='Tümü'?[...QUESTIONS]:QUESTIONS.filter(q=>q.c===activeCat);
+  renderQuiz();window.scrollTo({top:0,behavior:'smooth'});
+});
+function renderQuiz(){
+  quiz.innerHTML='';answered=0;score=0;
+  document.getElementById('scoreTot').textContent=qData.length;updateScore();
+  qData.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='q';
+    const opts=q.o.map((o,j)=>`<label class="opt" data-q="${i}" data-o="${j}"><span class="lt">${L[j]}</span>${o}</label>`).join('');
+    div.innerHTML=`<div class="q-no">SORU ${i+1}<span class="q-cat">${q.c}</span></div><div class="q-text">${q.q}</div>${opts}
+      <div class="exp" id="exp${i}"><b>Açıklama:</b> ${q.e}</div>`;
+    quiz.appendChild(div);
+  });
+  document.querySelectorAll('.opt').forEach(op=>op.onclick=()=>{
+    const qi=+op.dataset.q, oi=+op.dataset.o, q=qData[qi];
+    const group=document.querySelectorAll(`.opt[data-q="${qi}"]`);
+    if(group[0].classList.contains('disabled'))return;
+    group.forEach(g=>{g.classList.add('disabled');if(+g.dataset.o===q.a)g.classList.add('correct');});
+    if(oi===q.a){score++;}else{op.classList.add('wrong');}
+    document.getElementById('exp'+qi).classList.add('show');
+    answered++;updateScore();
+  });
+}
+function updateScore(){document.getElementById('scoreNow').textContent=score;document.getElementById('answered').textContent=answered;}
+document.getElementById('resetBtn').onclick=()=>{qData=activeCat==='Tümü'?[...QUESTIONS]:QUESTIONS.filter(q=>q.c===activeCat);renderQuiz();window.scrollTo({top:0,behavior:'smooth'});};
+document.getElementById('shuffleBtn').onclick=()=>{qData=shuffle([...qData]);renderQuiz();window.scrollTo({top:0,behavior:'smooth'});};
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+renderQuiz();
+
+let fc=[...FLASHCARDS], fi=0, known=new Set();
+const flash=document.getElementById('flash');
+document.getElementById('fcTot').textContent=fc.length;
+function renderCard(){
+  const c=fc[fi];
+  flash.classList.remove('flipped');
+  document.getElementById('fcFront').innerHTML=c.f;
+  document.getElementById('fcBack').innerHTML=c.b;
+  document.getElementById('fcIndex').textContent=fi+1;
+  document.getElementById('fcCnt').textContent=(fi+1)+'/'+fc.length;
+  document.getElementById('fcCnt2').textContent=(fi+1)+'/'+fc.length;
+  document.getElementById('fcBar').style.width=((fi+1)/fc.length*100)+'%';
+  document.getElementById('fcKnown').textContent=known.size;
+}
+flash.onclick=()=>flash.classList.toggle('flipped');
+document.getElementById('fcNext').onclick=()=>{fi=(fi+1)%fc.length;renderCard();};
+document.getElementById('fcPrev').onclick=()=>{fi=(fi-1+fc.length)%fc.length;renderCard();};
+document.getElementById('fcKnow').onclick=()=>{known.add(fc[fi].f);if(fi<fc.length-1){fi++;}renderCard();};
+document.getElementById('fcShuffle').onclick=()=>{fc=shuffle([...FLASHCARDS]);fi=0;renderCard();};
+document.getElementById('fcReset').onclick=()=>{fc=[...FLASHCARDS];fi=0;known.clear();renderCard();};
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('kartlar').classList.contains('active'))return;
+  if(e.key==='ArrowRight')document.getElementById('fcNext').click();
+  if(e.key==='ArrowLeft')document.getElementById('fcPrev').click();
+  if(e.key===' '){e.preventDefault();flash.classList.toggle('flipped');}
+});
+renderCard();
+</script>
+</body>
+</html>
